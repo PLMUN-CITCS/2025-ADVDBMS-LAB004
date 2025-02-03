@@ -1,7 +1,7 @@
-2025-ADVDBMS-WK02S0E01
+2025-ADVDBMS-WK02S0E02
 Week 02 - Review on Database Concepts
 
-Exercise # 01 - Guided Coding Exercise: Database Creation and Management
+Exercise # 02 - Guided Coding Exercise: Creating and Modifying a Table
 
 ## **Instructions**
 
@@ -77,69 +77,71 @@ Only perform this if this is the first time you will setup your Git Environment
 
 ### **Step 3: Complete the Assignment**
 
-**Exercise # 01 - Guided Coding Exercise: Database Creation and Management**
+**Exercise # 02 - Guided Coding Exercise: Creating and Modifying a Table**
 
    **Objective:**
-   Learn to create, use, and drop a database using SQL. This exercise will introduce basic SQL commands and file management practices for database development.
+   Practice creating a table with various SQL data types and constraints, then altering its structure by adding a new column. This exercise reinforces SQL DDL (Data Definition Language) commands.
 
    **Folder Structure:**
-   ```txt
+   ```
    university_db/
-   ├── create_and_use_db.sql
-   └── drop_db.sql
+   ├── create_students_table.sql
+   └── alter_students_table.sql
    ```
 
    **File Naming Convention:**
-   - `create_and_use_db.sql`: Contains SQL statements for creating and using the database.
-   - `drop_db.sql`: Contains the SQL statement for dropping the database.
+   - `create_students_table.sql`: Contains the SQL statement for creating the `Students` table.
+   - `alter_students_table.sql`: Contains the SQL statement for altering the `Students` table.
 
    **Notable Observations (to be discussed after completing the exercise):**
-   - **Case Sensitivity:** Database and table names might be case-sensitive depending on your SQL system. It's good practice to be consistent with casing.
-   - **Error Handling:** In a real application, you would want to add more robust error handling (e.g., checking if the database already exists before creating it).
-   - **Database Design:** This exercise only covers creating and dropping the database. The next step would be to design the tables within the `UniversityDB` to store information about students, courses, instructors, etc.
-   - **SQL Syntax:** The SQL syntax might vary slightly between different database systems. Refer to the documentation for your specific DBMS.
-   - `IF EXISTS` **Clause:** The `IF EXISTS` clause in the `DROP DATABASE` statement is a good practice to prevent errors if the database doesn't exist.
-   - **Verification:** The `SELECT DATABASE();` (or equivalent) statement is a useful way to confirm which database is currently being used.
+   - Data Types: This exercise uses `INT`, `VARCHAR`, and `DATE` data types. Explore other data types available in your SQL system (e.g., `TEXT`, `BOOLEAN`, `DATETIME`, `DECIMAL`).
+   - Constraints: The `PRIMARY KEY` and `NOT NULL` constraints are used. Investigate other constraints like `UNIQUE`, `CHECK`, and `FOREIGN KEY`.
+   - AUTO_INCREMENT/SERIAL/IDENTITY: Pay close attention to the syntax for auto-incrementing primary keys as it varies between database systems.
+   - `ALTER TABLE`: The `ALTER TABLE` command is powerful and can be used to add, modify, or drop columns, constraints, and even the table itself.
+   - Database Design: After creating the table, the next step would be to insert data into it using the `INSERT` statement. You can then practice querying the data using `SELECT` statements.
+   - SQL Syntax: Always refer to the documentation for your specific database management system for the most accurate and up-to-date syntax.
+   - Idempotency: It's good practice to make your scripts idempotent where possible. For example, you could add a check in the alter_students_table.sql script to see if the Email column already exists before adding it. This prevents errors if the script is run multiple times. (Example: IF NOT EXISTS (SELECT 1 FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME = 'Students' AND COLUMN_NAME = 'Email') THEN ALTER TABLE Students ADD Email VARCHAR(100); END IF; - This example is MySQL specific and you will need to change it based on your database system.)
       
    **Step-by-Step Instructions:**
 
    1. Setting up the Environment
       - Ensure you have a SQL database management system installed (e.g., MySQL, PostgreSQL, SQL Server). This exercise will use generic SQL syntax, but you might need to adjust slightly depending on your specific DBMS.
-      - Create the `university_db` directory. Inside it, create the two SQL files as shown in the folder structure above.
+      - If you haven't already, execute the `create_and_use_db.sql` script from the previous exercise to create and select the `UniversityDB` database. This ensures your new table is created in the correct database.
+      - Create the two SQL files as shown in the folder structure above within the `university_db` directory.
       
-   2. create_and_use_db.sql (Create and Use Database):
-      - Open `create_and_use_db.sql` in a text editor.
+   2. `create_students_table.sql` (Create Students Table):
+      - Open `create_students_table`.sql in a text editor.
       - Create the Database:
       ```SQL
-      -- Step 1: Create a database called UniversityDB
-      CREATE DATABASE UniversityDB;
+      -- Step 1: Create the Students table with constraints
+      CREATE TABLE Students (
+         StudentID INT PRIMARY KEY AUTO_INCREMENT,  -- MySQL Example: AUTO_INCREMENT
+         -- For other databases (e.g., PostgreSQL, SQL Server) you might use SERIAL or IDENTITY
+         FirstName VARCHAR(50) NOT NULL,
+         LastName VARCHAR(50) NOT NULL,
+         EnrollmentDate DATE
+      );
       ```
       
-      - Use the Database:
+      - Important Note: The `AUTO_INCREMENT` keyword is specific to MySQL. Other database systems have different ways of handling auto-incrementing primary keys:
+         - PostgreSQL: `SERIAL` or `BIGSERIAL` data types. Example: `StudentID SERIAL PRIMARY KEY`
+         - SQL Server: IDENTITY(1,1) Example: StudentID INT IDENTITY(1,1) PRIMARY KEY
+         - Consult the documentation for your specific database for the correct syntax.
+      
+   3. `alter_students_table.sql` (Alter Students Table):
+      - Open `alter_students_table.sql` in a text editor.
+      - Alter the table:
       ```SQL
-      -- Step 2: Use the newly created database
-      USE UniversityDB;
-
-      -- Verification (Optional): You can add a simple query to verify the database is selected.
-      SELECT DATABASE(); -- This will show the currently selected database.
+      -- Step 2: Alter the table to add an Email column
+      ALTER TABLE Students
+      ADD Email VARCHAR(100);
       ```
-      
-      - Save the `create_and_use_db.sql` file.
-      
-   3. `drop_db.sql` (Drop Database):
-      - Open `drop_db.sql` in a text editor.
-      - Drop the Database
-         ```SQL
-         -- Step 3: (Optional) Drop the database if needed.  Use with extreme caution!
-         USE UniversityDB;
-         DROP DATABASE IF EXISTS UniversityDB; -- The IF EXISTS clause prevents an error if the database doesn't exist.
-         ```
-      - Save the `drop_db.sql` file.
+      - Save the `alter_students_table.sql` file.
 
    4. Executing the SQL Scripts:
-      - Open your SQL client (e.g., MySQL Workbench, pgAdmin, SQL Server Management Studio). Connect to your database server.
-      - Creating and Using: Open the `create_and_use_db.sql` file in your SQL client or execute it from the command line. This will create the `UniversityDB` and switch the connection to use it.
-      - Dropping: If you want to drop the database (e.g., to start over), open the `drop_db.sql` file in your SQL client or execute it. Be very careful with this command, as it will permanently delete the database and all its data.
+      - Open your SQL client and connect to the `UniversityDB` database.
+      - Create Table: Execute the `create_students_table.sql` script. This will create the `Students` table.
+      - Alter Table: Execute the `alter_students_table.sql` script. This will add the `Email` column to the `Students` table.
 
 ### **Step 4: Push Changes to GitHub**
 Once you've completed your changes, follow these steps to upload your work to your GitHub repository.
