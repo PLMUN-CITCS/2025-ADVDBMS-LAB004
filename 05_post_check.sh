@@ -9,11 +9,8 @@ DB_USER="${DB_NAME:-UniversityDB}"      # Default to root if not set
 # Expected table structure (adjust as needed)
 EXPECTED_STRUCTURE=$(cat output/table_structure.txt)
 
-# Function to get the actual table structure from the database
-output=$(mysql -h "$DB_HOST" -P "$DB_PORT" -u "$DB_USER" "$DB_NAME" -e "DESCRIBE Students;" | tail -n +2 | awk '{print "    "$1" "$2" "$3" "$4" "$5" "$6";"}' 2>&1)
-
 # Get the actual table structure
-actual_structure=$(get_table_structure)
+actual_structure=$(mysql -h "$DB_HOST" -P "$DB_PORT" -u "$DB_USER" "$DB_NAME" -e "DESCRIBE Students;" | tail -n +2 | awk '{print "    "$1" "$2" "$3" "$4" "$5" "$6";"}' 2>&1)
 
 # Format the expected structure for comparison (remove extra whitespace)
 expected_formatted=$(echo "$EXPECTED_STRUCTURE" | sed 's/^[ \t]*//; s/[ \t]*$//; s/[ \t][ \t]*/ /g')
