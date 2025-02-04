@@ -114,13 +114,17 @@ Only perform this if this is the first time you will setup your Git Environment
       - Create the Database:
       ```SQL
       -- Step 1: Create the Students table with constraints
-      CREATE TABLE Students (
-         StudentID INT PRIMARY KEY AUTO_INCREMENT,  -- MySQL Example: AUTO_INCREMENT
+      Use `UniversityDB`;
+
+      -- Step 1: Create the Students table with constraints
+      CREATE TABLE `Students` (
+         `StudentID` INT PRIMARY KEY AUTO_INCREMENT,  -- MySQL Example: AUTO_INCREMENT
          -- For other databases (e.g., PostgreSQL, SQL Server) you might use SERIAL or IDENTITY
-         FirstName VARCHAR(50) NOT NULL,
-         LastName VARCHAR(50) NOT NULL,
-         EnrollmentDate DATE
+         `FirstName` VARCHAR(50) NOT NULL,
+         `LastName` VARCHAR(50) NOT NULL,
+         `EnrollmentDate` DATE
       );
+
       ```
       
       - Important Note: The `AUTO_INCREMENT` keyword is specific to MySQL. Other database systems have different ways of handling auto-incrementing primary keys:
@@ -132,9 +136,12 @@ Only perform this if this is the first time you will setup your Git Environment
       - Open `alter_students_table.sql` in a text editor.
       - Alter the table:
       ```SQL
+      Use `UniversityDB`;
+
       -- Step 2: Alter the table to add an Email column
-      ALTER TABLE Students
-      ADD Email VARCHAR(100);
+      ALTER TABLE `Students`
+      ADD `Email` VARCHAR(100);
+
       ```
       - Save the `alter_students_table.sql` file.
 

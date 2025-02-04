@@ -70,7 +70,7 @@ jobs:
       with:
         test-name: SQL Post-Execution Check - Verifying Created Entities
         setup-command: "chmod +x ./05_post_check.sh"
-        command: "./04_post_check.sh"
+        command: "./05_post_check.sh"
         timeout: 10
         max-score: 15
     - name: Autograding Reporter
