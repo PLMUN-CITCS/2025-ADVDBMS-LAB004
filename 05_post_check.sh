@@ -1,8 +1,8 @@
 #!/bin/bash
 
 # Database credentials (environment variables are recommended)
-DB_HOST="${DB_HOST:-127.0.0.1}"
-DB_PORT="${DB_PORT:-4000}" # MySQL default port is 3306, not 4000 unless you changed it
+DB_HOST="${DB_HOST:-127.0.0.1}"  # Default to 127.0.0.1 if not set
+DB_PORT="${DB_PORT:-4000}"      # Default to 4000 if not set
 DB_USER="${DB_USER:-root}"      # Default to root if not set
 DB_USER="${DB_NAME:-UniversityDB}"      # Default to root if not set
 
