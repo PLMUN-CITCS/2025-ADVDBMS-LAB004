@@ -113,7 +113,6 @@ Only perform this if this is the first time you will setup your Git Environment
       - Open `create_students_table`.sql in a text editor.
       - Create the Database:
       ```SQL
-      -- Step 1: Create the Students table with constraints
       Use `UniversityDB`;
 
       -- Step 1: Create the Students table with constraints
