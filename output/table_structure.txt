@@ -1,7 +1,5 @@
-CREATE TABLE (
-INT PRIMARY KEY AUTO_INCREMENT,
-VARCHAR(50) NOT NULL,
-VARCHAR(50) NOT NULL,
-DATE,
-VARCHAR(100)
-);
+StudentID int(11) NO PRI NULL auto_increment;
+FirstName varchar(50) NO NULL ;
+LastName varchar(50) NO NULL ;
+EnrollmentDate date YES NULL ;
+Email varchar(100) YES NULL ;

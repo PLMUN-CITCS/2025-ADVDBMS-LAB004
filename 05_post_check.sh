@@ -18,7 +18,6 @@ expected_formatted=$(echo "$EXPECTED_STRUCTURE" | sed 's/^[ \t]*//; s/[ \t]*$//;
 # Format the actual structure for comparison (remove extra whitespace)
 actual_formatted=$(echo "$actual_structure" | sed 's/^[ \t]*//; s/[ \t]*$//; s/[ \t][ \t]*/ /g')
 
-
 # Compare the structures
 if [[ "$expected_formatted" == "$actual_formatted" ]]; then
   echo "Table structure is correct."
