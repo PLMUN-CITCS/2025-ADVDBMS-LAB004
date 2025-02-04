@@ -27,6 +27,7 @@ jobs:
           echo "Waiting for TiDB to be ready..."
           sleep 5
         done
+        
     - name: Folder Existence Check - university_db Folder
       id: folder-existence-check
       uses: classroom-resources/autograding-command-grader@v1
@@ -36,6 +37,7 @@ jobs:
         command: "./01_folder_check.sh"
         timeout: 10
         max-score: 15
+
     - name: File Existence Check - Checking Required Scripts
       id: file-existence-check
       uses: classroom-resources/autograding-command-grader@v1
@@ -45,6 +47,7 @@ jobs:
         command: "./02_files_check.sh"
         timeout: 10
         max-score: 15
+
     - name: SQL Syntax Check - Validating SQL Scripts
       id: sql-syntax-check
       uses: classroom-resources/autograding-command-grader@v1
@@ -54,6 +57,7 @@ jobs:
         command: "./03_syntax_check.sh"
         timeout: 10
         max-score: 35
+
     - name: SQL Execution Check - Executing SQL Scripts
       id: sql-execution-check
       uses: classroom-resources/autograding-command-grader@v1
@@ -63,7 +67,7 @@ jobs:
         command: "./04_execution_check.sh"
         timeout: 10
         max-score: 20
-  
+
     - name: SQL Post-Execution Check - Verifying Created Entities
       id: sql-post-execution-check
       uses: classroom-resources/autograding-command-grader@v1
@@ -73,6 +77,7 @@ jobs:
         command: "./05_post_check.sh"
         timeout: 10
         max-score: 15
+
     - name: Autograding Reporter
       uses: classroom-resources/autograding-grading-reporter@v1
       env:
