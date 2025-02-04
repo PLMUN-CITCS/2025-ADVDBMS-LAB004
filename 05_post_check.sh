@@ -3,8 +3,8 @@
 # Database credentials (environment variables are recommended)
 DB_HOST="${DB_HOST:-127.0.0.1}"
 DB_PORT="${DB_PORT:-4000}" # MySQL default port is 3306, not 4000 unless you changed it
-DB_USER="${DB_USER:-root}"
-DB_NAME="${DB_USER:-UniversityDB}"          # Must be set as an environment variable!
+DB_USER="${DB_USER:-root}"      # Default to root if not set
+DB_USER="${DB_NAME:-UniversityDB}"      # Default to root if not set
 
 # Expected table structure (adjust as needed)
 EXPECTED_STRUCTURE=$(cat output/table_structure.txt)
