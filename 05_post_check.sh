@@ -10,9 +10,7 @@ DB_USER="${DB_NAME:-UniversityDB}"      # Default to root if not set
 EXPECTED_STRUCTURE=$(cat output/table_structure.txt)
 
 # Function to get the actual table structure from the database
-get_table_structure() {
-  mysql -h "$DB_HOST" -P "$DB_PORT" -u "$DB_USER" "$DB_NAME" -e "DESCRIBE Students;" | tail -n +2 | awk '{print "    "$1" "$2" "$3" "$4" "$5" "$6";"}'
-}
+output=$(mysql -h "$DB_HOST" -P "$DB_PORT" -u "$DB_USER" "$DB_NAME" -e "DESCRIBE Students;" | tail -n +2 | awk '{print "    "$1" "$2" "$3" "$4" "$5" "$6";"}' 2>&1)
 
 # Get the actual table structure
 actual_structure=$(get_table_structure)
@@ -36,5 +34,7 @@ else
   diff <(echo "$expected_formatted") <(echo "$actual_formatted") # Show the difference
   exit 1 # Exit with error code if structures do not match
 fi
+
+echo "$output"  # Print the output of the SQL script
 
 exit 0
