@@ -1,4 +1,4 @@
-2025-ADVDBMS-WK02S0E02
+2025-ADVDBMS-WK02S02E02
 Week 02 - Review on Database Concepts
 
 Exercise # 02 - Guided Coding Exercise: Creating and Modifying a Table
