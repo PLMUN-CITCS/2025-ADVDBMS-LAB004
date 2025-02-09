@@ -1,7 +1,7 @@
-2025-ADVDBMS-WK02S02E02
+# **2025-ADVDBMS-LAB004**
 Week 02 - Review on Database Concepts
 
-Exercise # 02 - Guided Coding Exercise: Creating and Modifying a Table
+Laboratory # 04 - Guided Coding Exercise: Creating and Modifying a Table
 
 ## **Instructions**
 
@@ -77,7 +77,7 @@ Only perform this if this is the first time you will setup your Git Environment
 
 ### **Step 3: Complete the Assignment**
 
-**Exercise # 02 - Guided Coding Exercise: Creating and Modifying a Table**
+**Laboratory # 04 - Guided Coding Exercise: Creating and Modifying a Tablee**
 
    **Objective:**
    Practice creating a table with various SQL data types and constraints, then altering its structure by adding a new column. This exercise reinforces SQL DDL (Data Definition Language) commands.
@@ -94,14 +94,17 @@ Only perform this if this is the first time you will setup your Git Environment
    - `alter_students_table.sql`: Contains the SQL statement for altering the `Students` table.
 
    **Notable Observations (to be discussed after completing the exercise):**
-   - Data Types: This exercise uses `INT`, `VARCHAR`, and `DATE` data types. Explore other data types available in your SQL system (e.g., `TEXT`, `BOOLEAN`, `DATETIME`, `DECIMAL`).
-   - Constraints: The `PRIMARY KEY` and `NOT NULL` constraints are used. Investigate other constraints like `UNIQUE`, `CHECK`, and `FOREIGN KEY`.
-   - AUTO_INCREMENT/SERIAL/IDENTITY: Pay close attention to the syntax for auto-incrementing primary keys as it varies between database systems.
-   - `ALTER TABLE`: The `ALTER TABLE` command is powerful and can be used to add, modify, or drop columns, constraints, and even the table itself.
-   - Database Design: After creating the table, the next step would be to insert data into it using the `INSERT` statement. You can then practice querying the data using `SELECT` statements.
-   - SQL Syntax: Always refer to the documentation for your specific database management system for the most accurate and up-to-date syntax.
-   - Idempotency: It's good practice to make your scripts idempotent where possible. For example, you could add a check in the alter_students_table.sql script to see if the Email column already exists before adding it. This prevents errors if the script is run multiple times. (Example: IF NOT EXISTS (SELECT 1 FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME = 'Students' AND COLUMN_NAME = 'Email') THEN ALTER TABLE Students ADD Email VARCHAR(100); END IF; - This example is MySQL specific and you will need to change it based on your database system.)
-      
+   - Data Types Matter: You've used INT, VARCHAR, and DATE. But remember, there's a whole world of data types out there! Explore TEXT, BOOLEAN, DATETIME, even spatial types. Choosing the right data type is crucial for efficient storage and data integrity.
+   - Constraints are Your Friends: PRIMARY KEY and NOT NULL are just the beginning. UNIQUE, FOREIGN KEY, and CHECK constraints help enforce data rules and relationships. Master these, and you'll prevent bad data from ever entering your tables.
+   - Auto-Increment Gotchas: Pay close attention to how your database system handles auto-incrementing columns. MySQL uses AUTO_INCREMENT, PostgreSQL has SERIAL, and SQL Server uses IDENTITY. Little syntax differences can trip you up!
+   - ALTER TABLE is Powerful: You've added a column, but ALTER TABLE can do so much more! Modify existing columns, add or drop constraints—it's a Swiss Army knife for database maintenance.
+   - Think Like a Designer: Creating a table is just the first step. Now, think about the data you'll store in it. How will you populate it? What queries will you run? This is where the real fun begins!
+
+   **SQL Script Best Practices**
+   - Idempotency is King: Write scripts that can be run multiple times without causing errors. Check if a column exists before adding it. This saves you headaches down the line.
+   - Comments, Comments, Comments: Never underestimate the power of good comments. Explain your code, especially when you're learning. Future you will thank you.
+   - Database-Specific Syntax: SQL can be a bit like a dialect. Always double-check the syntax for your specific database system. Don't assume MySQL and PostgreSQL are identical twins!
+
    **Step-by-Step Instructions:**
 
    1. Setting up the Environment
